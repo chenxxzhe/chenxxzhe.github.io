@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>exercise 40 -- show big img</title>
+    <meta name="intro" content="hover显示大图，移动跟随，碰边变向显示"/>
+    <style>
+        body * {
+            margin: 0;
+            padding: 0;
+        }
+        .outer ul {
+            width: 70%;
+            margin: 10px auto;
+            padding: 4px;
+            border: 1px solid red;
+            list-style: none;
+
+
+        }
+        .outer ul li {
+            display: inline-block;
+            width: 24%;
+            margin-right: -4px;
+
+        }
+        .outer ul li.active {
+            border: 1px solid red;
+        }
+        .outer ul li img {
+            width: 100%;
+            height: 100%;
+        }
+        #big {
+            position: absolute;
+            display: none;
+
+        }
+        #big img {
+            width: 100%;
+            height: 100%;
+            border: 2px solid grey;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+            var imgs = document.getElementsByTagName("li");
+            var oBig = document.getElementById("big");
+            //show big
+            for(var i=0;i<imgs.length;i++) {
+                imgs[i].index = i;
+                imgs[i].onmouseover = function (e) {
+                    var oImg = document.createElement("img");
+                    var img = new Image();
+                    oBig.style.width = "30%";
+
+                    img.src = oImg.src = this.getElementsByTagName("img")[0].src.replace(".jpg", "_big.jpg");
+                    oBig.appendChild(oImg);
+                    this.className = "active";
+                    oBig.style.display = "block";
+                    //whether loaded successfully
+                    //...
+
+                    //stop bubble
+                    e.stopPropagation();
+                    return false;
+                };
+                imgs[i].onmousemove = function(e) {
+                    var totalWidth = document.documentElement.offsetWidth;
+                    var iResWidth = totalWidth - e.clientX;
+                    console.log(iResWidth);
+                    oBig.style.top = e.clientY + 10 + "px";
+                    if(iResWidth>oBig.offsetWidth) {
+                        oBig.style.left = e.clientX + 10 +"px";
+                    } else {
+                        oBig.style.left = totalWidth - iResWidth - oBig.offsetWidth + 10+ "px";
+                    }
+
+                };
+
+                imgs[i].onmouseout = function(e) {
+                    this.className = "";
+                    oBig.removeChild(oBig.lastElementChild);
+                    oBig.style.display = "none";
+                };
+            }
+
+
+
+        };
+    </script>
+</head>
+<body>
+<div class="outer">
+    <!-- 凡是一系列的图片展示都用ul-->
+    <ul>
+        <li><img src="shirt_1.jpg" alt="1"/></li>
+        <li><img src="shirt_2.jpg" alt="2"/></li>
+        <li><img src="shirt_3.jpg" alt="4"/></li>
+        <li><img src="shirt_4.jpg" alt="4"/></li>
+    </ul>
+</div>
+<div id="big"></div>
+</body>
+</html>

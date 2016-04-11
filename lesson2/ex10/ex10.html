@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>exercise 10 -- popup window</title>
+    <style>
+        body {  text-align: center;  }
+        input { cursor: pointer;  }
+        
+        #blur {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            filter:Alpha(opacity=50);/* 只支持IE6、7、8、9 */
+            /*position:static; /!* IE6、7、8只能设置position:static(默认属性) ，否则会导致子元素继承Alpha值 *!/*/
+            zoom:1; /* 激活IE6、7的haslayout属性，让它读懂Alpha */
+            opacity: 0.5;
+            display: none;
+        }
+        #window {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            top: 25%;
+            left: 25%;
+            display: none;
+            padding: 0;
+            background-color: white;
+            border: 4px solid orange;
+        }
+        #window h2 {
+            margin: 0;
+            padding: 8px;
+            border-bottom: 4px solid orange;
+            background-color: yellow;
+            text-align: right;
+
+        }
+        #window h2 span{
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            line-height: 1em;
+            color: red;
+            background-color: white;
+            border: 1px solid red;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var blur = document.getElementById("blur");
+            var popupWindow = document.getElementById("window");
+            document.getElementById("popup").onclick = function() {
+                blur.style.display = "block";
+                popupWindow.style.display = "block";
+            };
+            document.getElementById("close").onclick = function() {
+                blur.style.display = "none";
+                popupWindow.style.display = "none";
+            };
+        };
+
+    </script>
+</head>
+<body>
+<input type="button" value="popup" id="popup"/>
+<div id="blur"></div>
+<div id="window">
+    <h2><span id="close">×</span></h2>
+    <p>content...</p>
+</div>
+</body>
+</html>
+
+<!--文字的垂直居中就是让line-height等于height，自动居中-->
+<!--标签的层叠顺序是后面叠前面的，所以blur挡住了btn,但没有挡住popupWindow-->
+
+<!--如果没有开头清空所有标签的margin与padding,那么遇到不能正确布局时首先想到这点-->

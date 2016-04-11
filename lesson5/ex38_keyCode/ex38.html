@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>exercise 38 -- key code</title>
+    <style>
+        body * {
+            padding: 0;
+            margin: 0;
+        }
+        pre {
+            margin: 10px auto;
+            background: lightgrey;
+            border: 1px dotted black;
+            font: 12px/1 serif;
+            color: green;
+        }
+        #keycode {
+            width: auto;
+            margin: 10px auto;
+            font: 20px arial;
+            font-weight: bold;
+            text-align: center;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+            var oP = document.getElementById("keycode");
+            //全局的监听直接用doc就可以了，不用先再html
+            document.onkeydown = function(e) {
+                oP.innerHTML = e.keyCode.toString();
+                //stop bubble
+                return false;
+            };
+        };
+    </script>
+</head>
+<body>
+    <pre>
+        var oP = document.getElementById("keycode");
+
+            document.onkeydown = function(e) {
+                oP.innerHTML = e.keyCode.toString();
+                //stop bubble
+                return false;
+            };
+    </pre>
+    <p id="keycode">here</p>
+</body>
+</html>

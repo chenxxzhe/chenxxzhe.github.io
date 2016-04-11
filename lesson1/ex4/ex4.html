@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>exercise 4 -- for circle</title>
+    <style>
+        body {text-align: center}
+
+        input {
+            width: auto;
+            height: auto;
+            text-align: center;
+        }
+
+        .group {
+            width: 360px;
+            overflow: auto;
+            margin: 10px auto;
+            border: 1px solid red;
+
+        }
+
+        .group div{
+            float: left;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            background-color: black;
+
+        }
+    </style>
+    <script>
+        var flag = false;
+        window.onload = function() {
+            document.getElementsByTagName("input")[0].onclick = function(){
+//                var blocks = document.getElementsByTagName("div"); //从根节点开始遍历整个文档，包括子元素
+//                console.log("number of div:" + blocks.length);
+//                for (var k in blocks) {
+//                    //为何有5个? 可能因为插件，会自动添加div，例如购物党,添加GWDANG
+//                    console.log(blocks[k]);
+//                }
+                var blocks = document.getElementById("outer").getElementsByTagName("div");
+                for (var i =0; i <blocks.length; i ++) {
+
+                    if (flag) {
+                        blocks[i].style.backgroundColor = "black";
+                    } else {
+                        blocks[i].style.backgroundColor = "red";
+                    }
+
+                }
+                flag = !flag;
+                console.log("flag: " + flag);
+            }
+        }
+
+    </script>
+</head>
+<body>
+<input type="button" value="change color"/>
+
+<div id="outer" class="group">
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+
+</body>
+</html>
+
+<!--行内元素用text-align:center 来居中，
+ 块元素要用margin-left\right:auto 来居中，关键是块元素的宽度不能为设备的最大值-->
+<!--块元素居中例子：对于内部的浮动元素用overflow来包裹，自身设定合适宽度， 然后用margin-->
+
+<!--for in 的用法：-->

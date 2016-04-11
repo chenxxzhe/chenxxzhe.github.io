@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>exercise 1 -- click event</title>
+    <style type="text/css">
+        .btn {
+            width: auto;
+            height: auto;
+            margin: 0 auto;
+            border: 1px solid red;
+            text-align: center;
+
+        }
+        .result {
+            width: 50px;
+            height: 50px;
+            background: #000;
+            margin: 0 auto;
+            border: 1px solid red;
+        }
+    </style>
+    <script>
+        var changeStyle = function(element, attr, value) {
+            element.style[attr] = value;
+        };
+
+        window.onload = function(){
+            var btn = document.getElementsByTagName("input");
+            var div = document.getElementById("result");
+            var attr = ["width", "height", "background", "display", "display"];
+            var value = ["100px", "100px", "red", "none", "block"];
+            for (var i=0; i<btn.length; i++) {
+                //不知道为什么不能直接用i，只能多加index来储存i
+                btn[i].index = i;
+                btn[i].onclick = function() {
+                    //由于&&的短运行特性，如果是最后一个就执行后面语句，清空CSS
+                    this.index == btn.length - 1 && (div.style.cssText = "");
+                    changeStyle(div, attr[this.index], value[this.index]);
+//                    changeStyle(div, attr[i], value[i]);
+                };
+            }
+
+        };
+    </script>
+</head>
+<body>
+    <div class="btn">
+        <input type="button" id="1" value="wider"/>
+        <input type="button" id="2" value="higher"/>
+        <input type="button" id="3" value="change color"/>
+        <input type="button" id="4" value="hide"/>
+        <input type="button" id="5" value="reset"/>
+    </div>
+    <div class="result" id="result"></div>
+</body>
+</html>

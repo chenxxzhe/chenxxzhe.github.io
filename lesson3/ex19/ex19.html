@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>exercise 19 -- type of</title>
+    <meta name="description" content="practice <pre>">
+    <style>
+        pre {
+            padding: 1%;
+            color: green;
+            background-color: lightgrey;
+            border: 1px dotted black;
+        }
+        pre span {
+            color: grey;
+        }
+    </style>
+    <script>
+        var text = "typeof 12345: " + typeof 12345 +"\n\n" +
+                        "typeof 'abc': " + typeof "abc" +"\n\n" +
+                        "typeof document: " + typeof document + "\n\n"+
+                        "typeof undefined: " + typeof undefined + "\n\n" +
+                        "typeof null: " + typeof null
+        window.onload = function() {
+            alert(text);
+        };
+    </script>
+</head>
+
+<body>
+    <pre>
+    &lt;script&gt;
+        alert(typeOf 12345);        <span>//number</span>
+        alert(typeOf "abc");        <span>//string</span>
+        alert(typeOf document);     <span>//object</span>
+        alert(typeof undefined);    <span>//undefined</span>
+        alert(typeof null);         <span>//object</span>
+    &lt;/script&gt;
+    </pre>
+</body>
+</html>

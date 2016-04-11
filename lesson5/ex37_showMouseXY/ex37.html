@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>exercise 37 -- show mouse xy</title>
+    <style>
+        body * {
+            margin: 0;
+            padding: 0;
+        }
+        pre {
+            margin: 10px auto;
+            background: lightgrey;
+            border: 1px dotted black;
+            font: 12px/1 serif;
+            color: green;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            document.getElementsByTagName("html")[0].onclick = function (e) {
+//                var e = e || window.event;
+                var msg = "(x,y ): (" + e.clientX + "," + e.clientY + ")";
+                document.getElementById("xy").innerHTML = msg;
+            };
+        };
+    </script>
+</head>
+<body>
+    <pre>
+        window.onload = function () {
+            document.getElementsByTagName("html")[0].onclick = function (e) {
+                //var e = e || window.event;
+                var msg = "(x,y ): (" + e.clientX + "," + e.clientY + ")";
+                document.getElementById("xy").innerHTML = msg;
+            };
+        };
+    </pre>
+    <p id="xy">(x,y):</p>
+
+</body>
+</html>

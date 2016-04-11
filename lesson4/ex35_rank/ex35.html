@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>exercise 35 -- rank</title>
+    <style>
+        body * {
+            margin: 0;
+            padding: 0;
+            font: 12px/1.5 arial;
+        }
+        div.outer {
+            position: relative;
+            width: 50%;
+            margin: 10px auto;
+            border: 1px solid red;
+        }
+
+        div ul {
+            width: 30%;
+            display: inline-block;
+            /*border: 1px solid red;*/
+            list-style: none;
+            overflow: auto;
+            /*图片,block,对齐文字基线的方式*/
+            vertical-align: middle;
+            
+        }
+        div ul li {
+            display: inline-block;
+            width: 18px;
+            background: url("rank.png") no-repeat 0 0;
+            /*如果用了拼图，就不能用背景图片自动缩放了*/
+            /*background-size: 100% auto;*/
+            text-indent: -9999px;
+            cursor: pointer;
+        }
+        div ul li.star {
+            background: url("rank.png") no-repeat 0 -28px;
+        }
+        div #tips {
+            position: absolute;
+            display: none;
+            width: 160px;
+            height: 60px;
+            padding: 8px;
+            top: 20px;
+            /*border: 1px dashed red;*/
+            background: url("tip_frame.gif") no-repeat;
+            background-size: 100% auto;
+
+
+
+        }
+
+    </style>
+    <script>
+        var msg = [
+            "Lorem ipsum dolor sit amet",
+            "consectetur adipisicing elit.  alias",
+            "architecto dicta iste labore liiciis  quod saepe",
+            "tempora temporibus ut!",
+            "consectetur adipisicing elit. Adipisci alias"
+        ]
+        window.onload = function () {
+            var flag = -1;
+            var tips = document.getElementById("tips");
+            var oUl = document.getElementsByTagName("ul")[0];
+            var description = document.getElementById("des");
+            var stars = document.getElementById("rank").getElementsByTagName("li");
+            for(var i=0;i<stars.length;i++) {
+                stars[i].index = i;
+                stars[i].onmouseover = function () {
+                    for(var j=0;j<=this.index;j++) {
+                        stars[j].className = "star";
+                    }
+                    //show tips
+                    tips.style.display = "block";
+                    tips.style.left = oUl.offsetLeft + 8 +((this.offsetWidth + 3.5) *this.index) - tips.offsetWidth/2 +"px";
+                    tips.innerHTML = msg[this.index];
+
+                };
+                stars[i].onmouseout = function () {
+                    for(var j =0;j<stars.length;j++) {
+                        stars[j].className = "";
+                    }
+                };
+                stars[i].onclick = function () {
+                    //show this
+                    flag = this.index;
+                    //show description
+                    description.innerHTML = msg[this.index];
+
+                };
+            }
+
+            oUl.onmouseout = function () {
+                if(flag != -1) {
+                    for(var j =0;j<=flag;j++) {
+                        stars[j].className = "star";
+                    }
+                }
+            };
+        };
+    </script>
+</head>
+<body>
+    <div class="outer">
+        <span>please rank:</span>
+        <ul id="rank">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+        <span id="des">description</span>
+        <p id="tips">Lorem ipsum dolor sit amet</p>
+
+    </div>
+</body>
+</html>

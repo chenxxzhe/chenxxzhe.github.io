@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>exercise 32 -- focus high light</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            font: 16px/1.5 arial;
+        }
+        #outer {
+            width: 40%;
+            margin: 10px auto;
+            background: #fff0fb;
+            border: 2px solid orange;
+
+        }
+        #outer h2 {
+            margin: 0;
+            padding-left: 1%;
+            background: pink;
+            border-bottom: 2px solid orange;
+            font-size: 20px;
+        }
+        #outer div p {
+            position: relative;
+        }
+
+        /*同行内的两个元素分别布局，一个用absolute 一个inline-block + text-align*/
+        #outer div p input {
+            position: absolute;
+            font-size: 16px;
+            width: 25%;
+            left: 37.5%;
+        }
+        #outer div p label {
+            display: inline-block;
+            width: 37%;
+            text-align: right;
+            /*border: 1px solid red;*/
+        }
+        #outer div .login {
+            text-align: center;
+
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var loginBtn = document.getElementsByTagName('button')[0];
+            var inputs = document.getElementsByTagName("input");
+            for(var i=0;i<inputs.length;i++) {
+                inputs[i].onfocus = function() {
+                    this.style.backgroundColor = "pink";
+                    this.style.border = "1px solid red";
+                    this.style.borderRadius = "2px";
+                };
+                inputs[i].onblur = function() {
+                    this.style.cssText = "";
+                };
+            }
+        };
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <h2>User login</h2>
+        <div>
+            <p>
+                <label for="user">user:</label>
+                <input type="text" id="user"/>
+            </p>
+            <p>
+                <label for="password">password:</label>
+                <input type="password" id="password"/>
+            </p>
+            <p class="login">
+                <button>login</button>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

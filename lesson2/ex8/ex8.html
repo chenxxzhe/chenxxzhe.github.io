@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>exercise 8 -- get text</title>
+    <style>
+        .content {
+            width: 60%;
+            height: auto;
+            margin: 10px auto;
+        }
+        .content p{
+            border: 4px solid grey;
+            text-indent: 2em;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var texts = document.getElementsByTagName("p");
+            for (var key in texts) {
+                texts[key].onclick = function() {
+                    alert(this.textContent);
+                    alert(this.innerHTML);
+                };
+            }
+        }
+    </script>
+</head>
+
+<body>
+<div class="content">
+    <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit. Accusantium aspernatur at, commodi corporis culpa deleniti dignissimos eaque eos exercitationem fugit ipsa ipsum itaque nesciunt perspiciatis quae quidem soluta unde ut.</p>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi architecto aspernatur dolorum explicabo, <strong>impedit incidunt</strong> iure labore libero modi mollitia optio porro praesentium provident ratione repellat, unde, voluptas voluptatem. Quod.</p>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur doloribus error eum incidunt molestias nostrum quis, quisquam rerum sit unde vitae voluptatem. Aperiam <strong>delectus dolore ducimus</strong> pariatur quod rerum tempora!</p>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquam aperiam at aut cupiditate deserunt dolorem doloremque, et expedita iure modi nemo nesciunt nobis nostrum, <strong>quaerat</strong> quod similique totam ut.</p>
+</div>
+</body>
+</html>

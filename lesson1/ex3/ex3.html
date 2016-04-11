@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>exercise 3 -- function with parameters</title>
+    <style>
+        form {
+            width: 500px;
+            height: auto;
+            margin: 10px auto;
+            border: 1px solid red;
+            text-align: center;
+        }
+        form div  {
+            position: relative;
+            margin: 10px;
+            left: 10%;
+        }
+
+        form div span{
+            position: absolute;
+            top: 0;
+            left: 20%;
+            border: 1px solid black;
+            text-align: left;
+        }
+
+        #submit {
+            width: auto;
+            height: auto;
+            margin: 0 auto;
+        }
+
+    </style>
+    <script>
+        function myFunc(city, district) {
+            alert("city: " + city + ", district: " + district);
+        }
+
+        window.onload = function() {
+            var submit = document.getElementById("submit");
+            submit.onclick = function() {
+                var city = document.getElementById("city").value;
+                var district = document.getElementById("district")["value"];
+                myFunc(city, district);
+            }
+        }
+    </script>
+</head>
+<body>
+
+<form action="javascript:;">
+    <div>
+        <span><lable for="city">city:</lable></span>
+        <input id="city" type="text" name="c" value="beijing"/>
+    </div>
+    <div>
+        <span><label for="district">district:</label></span>
+        <input id="district" type="text" name="d" value="chaoyang"/>
+    </div>
+    <input type="button" id="submit" value="submit"/>
+</form>
+
+</body>
+</html>
+
+<!--多行文本 各列分别对齐，可以通过设上一级的div为relative，本行absolute，各列加<span>分别调整位移来实现-->
+<!--对于标签的属性["attr"] 与 .attr 是一样的-->
+
+<!--这里修改了input里面的值后，只刷新是不会变回原值的，只能重新打开，不知道input是不是自带session-->

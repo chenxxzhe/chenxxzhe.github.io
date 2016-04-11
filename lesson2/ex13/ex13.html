@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>exercise 13 -- tab</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        .outer {
+            width: 30%;
+            margin: 10px 35%;
+            border: 1px solid black;
+        }
+        #tab {
+            border-bottom: 1px solid black;
+            background-color: black;
+            overflow: auto;
+        }
+        #tab li {
+            float: left;
+            padding: 4px;
+            color: white;
+            list-style: none;
+            cursor: pointer;
+        }
+        #tab li.current {
+            background-color: lightgrey;
+        }
+        #content ul {
+            display: none;
+            margin-left: 20px;
+            left: 10%;
+            border: 1px solid red;
+        }
+
+    </style>
+
+    <script>
+        window.onload = function () {
+            var tabs = document.getElementById("tab").getElementsByTagName("li");
+            var content = document.getElementById("content").getElementsByTagName("ul");
+            for (var i = 0; i< tabs.length; i++) {
+                tabs[i].index = i;
+                tabs[i].onmouseover = function() {
+                    for(var j=0;j<tabs.length;j++) {
+                        tabs[j].className = "";
+                    }
+                    this.className = "current";
+                    for (var j = 0; j<tabs.length;j++) {
+                        content[j].style.display = 'none'; // 单引号也可以
+                    }
+                    content[this.index].style.display = "block";
+                };
+            }
+        };
+    </script>
+
+</head>
+<body>
+    <div class="outer">
+        <ul id="tab">
+            <li>tab1</li>
+            <li>tab2</li>
+            <li>tab3</li>
+        </ul>
+
+        <div id="content">
+            <ul style="display: block;">
+                <li>title1</li>
+                <li>title2</li>
+                <li>title3</li>
+            </ul>
+            <ul>
+                <li>title1</li>
+                <li>title2</li>
+                <li>title3</li>
+                <li>title4</li>
+                <li>title5</li>
+                <li>title6</li>
+                <li>title7</li>
+            </ul>
+            <ul>
+                <li>title1</li>
+                <li>title2</li>
+                <li>title3</li>
+                <li>title4</li>
+                <li>title5</li>
+                <li>title6</li>
+                <li>title7</li>
+                <li>title8</li>
+                <li>title9</li>
+                <li>title10</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+
+<!--for in 只能用在纯数字数组上，有太多问题了-->

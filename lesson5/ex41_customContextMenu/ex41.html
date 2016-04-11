@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>exercise 41 -- custom context menu</title>
+    <meta name="intro" content="context menu的制步骤：一个absolute div, document.oncontextmenu, 右击显示在鼠标的位置"/>
+    <style>
+        body * {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        ul.context {
+            position: absolute;
+            display: none;
+            border: 1px solid lightgrey;
+            border-radius: 4px;
+            list-style: none;
+            cursor: pointer;
+            
+        }
+
+        ul.context li {
+            padding: 2px;
+            border: 1px solid lightgrey;
+        }
+        ul.context li:hover {
+            background: lightgray;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+            var oMenu = document.getElementsByTagName("ul")[0];
+            var aLi = oMenu.getElementsByTagName("li");
+            document.oncontextmenu = function(e) {
+                var iResWidth = document.documentElement.offsetWidth - e.clientX;
+                oMenu.style.display = "block";
+                if (iResWidth < oMenu.offsetWidth) {
+                    oMenu.style.left = e.clientX - oMenu.offsetWidth - 4 + "px";
+                } else {
+                    oMenu.style.left = e.clientX + 4 + "px";
+                }
+
+                oMenu.style.top = e.clientY + 4 + "px";
+                return false;
+            };
+            for (var i=0;i<aLi.length;i++) {
+                aLi[i].onclick = function () {
+                    oMenu.style.display = "none";
+                };
+            }
+            document.onclick = function () {
+                oMenu.style.display = "none";
+            };
+        };
+    </script>
+</head>
+<body>
+    <p>please right click to see the effect</p>
+    <ul class="context">
+        <li>copy</li>
+        <li>cut</li>
+        <li class="last">paste</li>
+    </ul>
+</body>
+</html>

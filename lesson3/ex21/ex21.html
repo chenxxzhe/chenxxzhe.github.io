@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>exercise 21 -- accumulated number </title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        /*一种垂直居中的方法是过度约束，父relative,子absolute,ltrb为0,不可能实现,重现计算位置,margin:auto实现各边距相等,但IE7及以下不能用*/
+        /*em单位可以保证框包住文字*/
+        #outer {
+            position: absolute;
+            width: 3em;
+            height: 2em;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            border: 1px solid red;
+        }
+        #outer button {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var button = document.getElementsByTagName("button")[0];
+            button.onclick = function() {
+                button.innerHTML = (parseInt(button.innerHTML) + 1).toString();
+            };
+
+        }
+    </script>
+</head>
+<body>
+<div id="outer">
+    <button>0</button>
+</div>
+
+</body>
+</html>

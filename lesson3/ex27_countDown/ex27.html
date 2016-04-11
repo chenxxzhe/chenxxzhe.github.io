@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>exercise 27 -- count down</title>
+    <style>
+        div {
+            width: 30%;
+            margin: 10px auto;
+            padding: 4px;
+            color: white;
+            background-color: #444;
+            text-align: center;
+        }
+        div input {
+            width: 20%;
+            margin: 4px;
+            color: black;
+            background-color: white;
+            border: 2px solid lightgrey;
+            text-align: center;
+        }
+        div button {
+            display: block;
+            width: 90%;
+            margin: 10px auto;
+            border: 1px solid grey;
+            background: linear-gradient(white, green, lightgreen);
+        }
+        div button.started {
+            background: linear-gradient(white, red, indianred);
+        }
+        div button:active {
+            background: linear-gradient(to top, white, green, lightgreen);
+        }
+        div button.started:active {
+            background: linear-gradient(to top, white, red, indianred);
+        }
+    </style>
+    <script>
+        function format(a) {
+            return a.toString().replace(/^\d$/g, "0" + a);
+        }
+        window.onload = function() {
+            //alert(00000); //只显示一个0
+            var timer = null;
+            var isStarted = false;
+            var btn = document.getElementsByTagName("button")[0];
+            var input = document.getElementsByTagName("input");
+            btn.onclick = function() {
+                if(!isStarted) {
+                    timer = setInterval(countDown, 1000);
+                    this.className = "started";
+                    this.innerHTML = "stop";
+                    isStarted = true;
+                } else {
+                    clearInterval(timer);
+                    this.className = "";
+                    this.innerHTML = "start";
+                    isStarted = false;
+                }
+            };
+            function countDown() {
+                var m = parseInt(input[0].value);
+                var s = parseInt(input[1].value);
+                if(s==0 && m != 0) {
+                    m--;
+                    s = 60;
+                } else {
+                    s--;
+                }
+                if(m<=0 && s<=0) {
+                    alert("times out!");
+                    clearInterval(timer);
+                    btn.innerHTML = "time out!";
+
+                }
+                input[0].value = format(m);
+                input[1].value = format(s);
+            }
+        };
+    </script>
+</head>
+<body>
+    <div>
+        <input type="text" value="01"/> minutes
+        <input type="text" value="00"/> seconds
+        <button>start</button>
+    </div>
+</body>
+</html>

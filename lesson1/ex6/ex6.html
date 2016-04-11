@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>exercise 6 -- hover tips</title>
+    <style>
+        #outer {
+            text-align: center;
+        }
+
+        #tip {
+            display: none;
+            width: 200px;
+            height: 50px;
+            margin: 10px auto;
+            padding: 4px;
+            background-color: yellow;
+            border: 1px solid red;
+            text-align: left;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+            var label = document.getElementsByTagName("label")[0];
+            var tip = document.getElementById("tip");
+            label.onmouseover = function() {
+                tip.style.display = "block";
+            };
+            label.onmouseout = function() {
+                tip.style.display = "none";
+            };
+        };
+    </script>
+</head>
+
+<body>
+
+<div id="outer">
+    <label>
+        <input type="checkbox" id="check"/>
+        login auto within two weeks
+    </label>
+    <div id="tip">don't checkin this out of your home</div>
+</div>
+
+</body>
+</html>
+
+<!--label可以一块用，这样就不用for属性了-->
+<!--如果大部分内容都是居中的，首先，思维定势地考虑到他们可能就是在同一个DIV内-->

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>exercise 42 -- control div</title>
+    <style>
+        body * {
+            margin: 0;
+            padding: 0;
+            font: 16px/1.5 arial;
+        }
+        .outer {
+            margin: 10px auto;
+            padding: 8px;
+            background: lightgray;
+            color: green;
+            border: 1px dotted black;
+        }
+        #target {
+            position: absolute;
+            top: 40%;
+            left: 40%;
+            width: 50px;
+            height: 50px;
+            background: red;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oTarget = document.getElementById("target");
+            document.onkeydown = function(e) {
+                var ctrl = e.ctrlKey;
+                var doc = document.documentElement;
+                switch (e.keyCode) {
+                    case 37:
+                        //left
+                        //limit
+                        if(oTarget.offsetLeft<=0) {
+                            break;
+                        }
+                        oTarget.style.left = oTarget.offsetLeft -5 + "px";
+                        break;
+                    case 38:
+                        //up
+                        if(ctrl) {
+                            var keepCenterTop = oTarget.offsetHeight /4;
+                            var keepCenterLeft = oTarget.offsetWidth /4;
+                            oTarget.style.height = oTarget.offsetHeight*1.5 + "px";
+                            oTarget.style.width = oTarget.offsetWidth*1.5 + "px";
+                            oTarget.style.top = oTarget.offsetTop - keepCenterTop + "px";
+                            oTarget.style.left = oTarget.offsetLeft - keepCenterLeft + "px";
+                        }
+                        //limit
+                        if(oTarget.offsetTop<=0) {
+                            break;
+                        }
+                        oTarget.style.top = oTarget.offsetTop - 5 + "px";
+                        break;
+                    case 39:
+                        //right
+                        //limit
+                        if(oTarget.offsetLeft + oTarget.offsetWidth + 5 >= doc.clientWidth) {
+                            break;
+                        }
+                        oTarget.style.left = oTarget.offsetLeft +5 + "px";
+                        break;
+                    case 40:
+                        //down
+                        if(ctrl) {
+                            var keepCenterTop = oTarget.offsetHeight /6;
+                            var keepCenterLeft = oTarget.offsetWidth /6;
+                            oTarget.style.height = oTarget.offsetHeight/1.5 + "px";
+                            oTarget.style.width = oTarget.offsetWidth/1.5 + "px";
+                            oTarget.style.top = oTarget.offsetTop + keepCenterTop + "px";
+                            oTarget.style.left = oTarget.offsetLeft + keepCenterLeft + "px";
+                        }
+                        //limit
+                        if(oTarget.offsetTop + oTarget.offsetHeight + 5 > doc.clientHeight) {
+                            break;
+                        }
+                        oTarget.style.top = oTarget.offsetTop + 5 + "px";
+                        break;
+                    case 49:
+                        //1
+                        if(ctrl) {
+                            oTarget.style.background = "green";
+
+                        }
+                        break;
+                    case 50:
+                        //1
+                        if(ctrl) {
+                            oTarget.style.background = "yellow";
+                        }
+                        break;
+                    case 51:
+                        //1
+                        if(ctrl) {
+                            oTarget.style.background = "blue";
+                        }
+
+                        break;
+                }
+                //stop bubble
+                return false;
+            };
+        };
+
+    </script>
+</head>
+<body>
+    <div class="outer">
+        <p>you can control the div in center as follow:</p>
+        <br/>
+        <p>up:↑ down:↓ left:← right:→</p>
+        <br/>
+        <p>Ctrl + 1 : turn background to green</p>
+        <p>Ctrl + 2 : turn background to yellow</p>
+        <p>Ctrl + 3 : turn background to blue</p>
+        <p>Ctrl + ↑ : larger</p>
+        <p>Ctrl + ↓ : smaller</p>
+    </div>
+    <div id="target"></div>
+</body>
+</html>

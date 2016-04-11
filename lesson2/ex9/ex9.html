@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>exercise 9 -- RegExp</title>
+    <style>
+        div {
+            width: 60%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        div label {display: block}
+        div label span {color: lightgrey}
+        div p {
+            color: red;
+            text-align: center;
+            font-style: oblique;
+
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var result = document.getElementById("result");
+            document.getElementById("sum").onclick = function() {
+                var raw = document.getElementById("data").value;
+                var values = raw.split(",");
+                console.log(values);
+                var sum = 0;
+                for (var key in values) {
+                    sum += parseInt(values[key]);
+                }
+                result.innerHTML = sum.toString();
+            };
+            document.getElementById("data").onkeydown = function() {
+                this.value = this.value.replace(/[^\d(,)]/g, "");
+            };
+            document.getElementById("data").onkeyup = function() {
+                this.value = this.value.replace(/[^\d(,)]/g, "");
+            };
+
+        };
+    </script>
+</head>
+
+<body>
+    <div>
+        <label>
+            <input id="data" type="text" value="1,2,3,4,5,6,7,8,9,10" />
+            <span>please input number and split with ","</span>
+        </label>
+        <input type="button" value="sum" id="sum"/>
+        <p id="result"></p>
+    </div>
+</body>
+</html>

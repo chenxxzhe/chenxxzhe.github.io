@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>exercise 43 -- drag</title>
+    <link rel="stylesheet" href="../../normalize-4.0.0.css"/>
+    <style>
+        body {
+            background: black;
+
+        }
+        .outer {
+            position: absolute;
+            top: 40%;
+            left: 40%;
+            width: 200px;
+            background: #333333;
+            border: 2px solid grey;
+            color: white;
+
+        }
+        .outer h2 {
+            margin: 0;
+            height: 100%;
+            border-bottom: 2px solid grey;
+            font-size: 12px;
+            text-align: right;
+            cursor: move;
+        }
+        .outer h2 span {
+            cursor: pointer;
+        }
+        .outer ul {
+            position: relative;
+            width: 100%;
+            padding: 0;
+            font: 12px/1.5 arial;
+            list-style: none;
+        }
+        /*冒号对齐，左面限制li宽度，文字右对齐；右面span括住，基于ul的absolute left调整*/
+        .outer ul li {
+            width: 40%;
+            text-align: right;
+        }
+        .outer ul li span {
+            position: absolute;
+            left: 42%;
+            color: gold;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var div = document.getElementsByTagName("div")[0];
+            var oReplay = document.getElementById("replay");
+            var aLi = document.getElementsByTagName("ul")[0].getElementsByTagName("span");
+            var oDraggable = document.getElementsByTagName("h2")[0];
+            var bDrag = false;
+            var aInfo = [bDrag, div.offsetLeft, div.offsetTop];
+            refreshInfo(aInfo);
+            //加载信息
+            function refreshInfo(a) {
+                for(var i=0;i< a.length;i++) {
+                    aLi[i].innerHTML = a[i];
+                }
+
+            }
+
+            var relativeX = 0;
+            var relativeY = 0;
+            var doc = document.documentElement;
+
+            oReplay.onclick = function (e) {
+                console.log("click replay");
+                e.stopPropagation();
+                e.cancelBubble = true;
+                return false;
+            };
+
+            //按住拖拽
+            oDraggable.onmousedown = function(e) {
+                aInfo[0] = bDrag = true;
+                refreshInfo(aInfo);
+                this.setCapture() && this.setCapture;
+                relativeX = e.clientX - div.offsetLeft;
+                relativeY = e.clientY - div.offsetTop;
+                console.log("click");
+                return false;
+            };
+            //拖拽
+            document.onmousemove = function (e) {
+                if(bDrag) {
+                    var moveLeft = e.clientX - relativeX;
+                    var moveTop = e.clientY - relativeY;
+                    var maxX = doc.clientWidth - div.offsetWidth;
+                    var maxY = doc.clientHeight - div.offsetHeight - 1;
+                    console.log(maxY);
+                    moveLeft = moveLeft < 0 ? 0 : moveLeft;
+                    moveLeft = moveLeft > maxX ? maxX : moveLeft;
+                    moveTop = moveTop < 0 ? 0 : moveTop;
+                    moveTop = moveTop > maxY ? maxY : moveTop;
+
+                    div.style.left = moveLeft + "px";
+                    div.style.top = moveTop  + "px";
+                    aInfo = [bDrag, div.offsetLeft, div.offsetTop];
+                    refreshInfo(aInfo);
+                }
+
+            };
+            //放开鼠标，结束拖拽
+            oDraggable.onmouseup = function(e) {
+                aInfo[0] = bDrag = false;
+                refreshInfo(aInfo);
+                this.releaseCapture() && this.releaseCapture;
+
+
+            };
+        };
+    </script>
+</head>
+<body>
+    <div class="outer">
+        <h2><span id="replay">play drag track</span></h2>
+        <ul>
+            <li>Drag:<span id="isDrag">false</span></li>
+            <li>X:<span id="x">1</span></li>
+            <li>Y:<span id="y">2</span></li>
+        </ul>
+    </div>
+</body>
+</html>

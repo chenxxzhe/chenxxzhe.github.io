@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>exercise 17 -- change img path</title>
+    <!-- todo: li 怎么高度包裹图片-->
+    <style>
+        body * {
+            margin: 0;
+            padding: 0;
+        }
+        #outer {
+            width: 10%;
+            margin: 10px auto;
+            background-color: lightgrey;
+            border: 1px solid grey;
+        }
+        #outer img {
+            width: 100%;
+            height: 100%;
+        }
+        #outer ul{ overflow: hidden}
+
+
+        #outer ul li {
+            float: left;
+            width: 29%;
+            margin: 2px 1%;
+            border: 1px solid red;
+            list-style: none;
+            cursor: pointer;
+        }
+        #outer ul li img {
+            width: 100%;
+            height: 100%;
+        }
+
+    </style>
+    <script>
+        window.onload = function() {
+            var lis = document.getElementsByTagName("img");
+            var show = document.getElementById("show");
+            for (var i =0;i<lis.length;i++) {
+                lis[i].onmouseover = function() {
+                    show.src = this.src;
+                };
+            }
+            //还可以加上 loading 的UI
+        };
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <img id="show" src="1.jpg" alt="first"/>
+        <ul>
+            <li><img src="1.jpg" alt="1"/></li>
+            <li><img src="2.jpg" alt="2"/></li>
+            <li><img src="3.jpg" alt="3"/></li>
+            <li><img src="4.jpg" alt="4"/></li>
+            <li><img src="5.jpg" alt="5"/></li>
+            <li><img src="6.jpg" alt="6"/></li>
+        </ul>
+    </div>
+</body>
+</html>

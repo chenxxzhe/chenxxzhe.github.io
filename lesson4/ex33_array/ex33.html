@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>exercise 33 -- usage of array</title>
+    <style>
+        body * {
+            padding: 0;
+            margin: 0;
+            font: 12px/1.5 arial;
+        }
+        div {
+            margin: 10px auto;
+            padding: 1%;
+            border: 1px dotted black;
+            background: lightgray;
+            color: green;
+            overflow: auto;
+        }
+    </style>
+    <script>
+        function getArray(str) {
+            var temp = str.split(',');
+            console.log(temp);
+            return temp;
+
+        }
+        window.onload = function () {
+            var oDate = document.getElementById("date");
+            var aDate = getArray(oDate.innerHTML);
+            var oNumber = document.getElementById("number");
+            var aNumber = getArray(oNumber.innerHTML);
+            var oColor = document.getElementById("color");
+            var aColor = getArray(oColor.innerHTML);
+            var sColor = oColor.innerHTML;
+            var show = document.getElementById("show");
+            showColor(aColor);
+
+            var shift = document.getElementById("shift");
+            var added1 = true;
+            var added2 = true;
+            shift.onclick = function () {
+                if(added1) {
+                    aDate.shift();
+                    this.innerHTML = "add 1"
+                    added1 = false;
+                } else {
+                    aDate.unshift("jan");
+                    this.innerHTML = "delete 1"
+                    added1 = true;
+
+                }
+                oDate.innerHTML = aDate.join(",");
+
+            };
+            var push = document.getElementById("push");
+            push.onclick = function () {
+                if(added2) {
+                    aDate.pop();
+                    this.innerHTML = "add 12"
+                    added2 = false;
+                } else {
+                    aDate.push("dec");
+                    this.innerHTML = "delete 12"
+                    added2 = true;
+
+                }
+                oDate.innerHTML = aDate.join(",");
+            };
+
+
+            var copy = document.getElementById("copyNum");
+            copy.onclick = function () {
+                oNumber.innerHTML = oNumber.innerHTML.concat(","+aNumber.toString());
+            };
+            var numDefault = document.getElementById("numDefault");
+            numDefault.onclick = function () {
+                oNumber.innerHTML = aNumber.toString();
+            };
+
+            //如果是基本类型：number, boolean, string等,就是值引用，其他就是地址引用
+            //这种是地址引用
+            //var colorTemp = aColor;
+
+            var colorReplace = document.getElementById("colorReplace23");
+            colorReplace.onclick = function () {
+                aColor.splice(1, 2, "pink", "yellow");
+                oColor.innerHTML = aColor;
+                showColor(aColor);
+
+            };
+            var colorDelete = document.getElementById("colorDel3");
+            colorDelete.onclick = function () {
+                aColor.splice(0, 3);
+                oColor.innerHTML = aColor;
+                showColor(aColor);
+
+            };
+            var colorDel23 = document.getElementById("colorDel23");
+            colorDel23.onclick = function () {
+                aColor.splice(1, 2);
+                oColor.innerHTML = aColor;
+                showColor(aColor);
+
+            };
+            var colorInsert = document.getElementById("colorInsert2");
+            colorInsert.onclick = function () {
+                aColor.splice(1, 0, "orange", "grey");
+                oColor.innerHTML = aColor;
+                showColor(aColor);
+
+            };
+            var colorDefault = document.getElementById("colorDefault");
+            colorDefault.onclick = function () {
+                aColor = sColor.split(",");
+                oColor.innerHTML = aColor;
+                showColor(aColor);
+
+            };
+
+
+            function showColor(colors) {
+                show.innerHTML = ""; //删除全部子元素
+                if(colors.length != 0) {
+                    for(var key in colors) {
+                        var block = document.createElement("div");
+                        block.style.float = "left";
+                        block.style.padding = "8px";
+                        block.style.marginRight = "4px";
+                        block.style.backgroundColor = colors[key];
+                        show.appendChild(block);
+
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+
+<body>
+<div>
+    <p id="date">jan, fev, mar, apr, may, jun, jul, sep, oct, nov, dec</p>
+</div>
+<button id="shift">delete 1</button>
+<button id="push">delete 12</button>
+<div>
+    <p id="number">1,2,3,4,5,6,7,8,9,10</p>
+</div>
+<button id="copyNum">copy</button>
+<button id="numDefault">default</button>
+<div>
+    <p id="color">red,green,blue,orange,purple,white</p>
+</div>
+<button id="colorReplace23">replace 2,3</button>
+<button id="colorDel3">delete 0-3</button>
+<button id="colorDel23">delete 2,3</button>
+<button id="colorInsert2">insert in 2</button>
+<button id="colorDefault">default</button>
+
+<div id="show">
+
+</div>
+</body>
+</html>

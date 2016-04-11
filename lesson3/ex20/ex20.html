@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>exercise 20 -- parse integer to string</title>
+    <style>
+        body * {
+            padding: 0;
+            margin: 0;
+            font: 12px/1.5 arial;
+
+        }
+        #outer {
+            width: 20%;
+            margin: 10px auto;
+            border: 1px solid lightpink;
+        }
+        #outer input {
+            width: 20%;
+            text-align: center;
+        }
+        #outer span {
+            color: darkred;
+        }
+        #outer button {
+            margin-left: 3%;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var sum = document.getElementById("sum");
+            var input = document.getElementsByTagName("input");
+            var result = document.getElementById('result');
+            //sum
+            sum.onclick = function() {
+                var s = 0;
+                for(var i =0;i<input.length;i++) {
+                    s += parseInt(input[i].value);
+                }
+                result.innerHTML = s.toString();
+            };
+            //valid the input
+            for(var i =0; i<input.length;i++) {
+                input[i].onkeydown = function() {
+                    this.value = this.value.replace(/[^\d]/g, "");
+                };
+                input[i].onkeyup = function() {
+                    this.value = this.value.replace(/[^\d]/g, "");
+                };
+            }
+        };
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <input type="text" value="1"> + <input type="text" value="2"> = <span id="result">3</span>
+        <button id="sum">sum</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>exercise 7 -- popup menu</title>
+    <style>
+        a {text-decoration: none;}
+
+        div {
+            width: 100px;
+            margin: 0 auto;
+            border: 1px solid red;
+            text-align: center
+        }
+        div ul {
+            display: none;
+            color: purple;
+            border: 1px solid mediumpurple;
+            margin: 4px 0;
+            padding: 0;
+            text-align: center;
+            list-style: none;
+
+        }
+        div ul li:hover {
+            background-color: mediumpurple;
+            cursor: pointer;
+        }
+        div ul #close {
+            border-top: 1px solid mediumpurple;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var ul = document.getElementsByTagName("ul")[0];
+            var style = ul.style;
+            var menu = document.getElementsByTagName("input")[0];
+            menu.onclick = function() {
+                console.log("click menu");
+                //第一次点击会由于style.display == "" 造成false，继续none；那么逆向思维用第二句。
+//                style.display = style.display == "none" ? "block" : "none";
+                style.display = style.display == "block" ? "none" : "block";
+            };
+            document.getElementById("close").onclick = function() {
+                style.display = "none";
+            };
+        }
+    </script>
+</head>
+
+<body>
+<div>
+    <input type="button" value="menu"/>
+    <ul class="menu">
+        <li><a>title1</a></li>
+        <li><a>title2</a></li>
+        <li id="close"><a>close</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
+
+<!--可能很多标签都可以用:hover，不单单<a>-->

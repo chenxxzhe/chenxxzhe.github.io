@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>exercise 18 -- check box</title>
+    <style>
+        body * {
+            padding: 0;
+            margin: 0;
+        }
+        #outer {
+            width: 15%;
+            margin: 10px auto;
+            padding: 4px;
+            border: 1px solid black;
+            border-radius: 4px;
+        }
+        #reverse {color: deepskyblue}
+        #reverse:hover{color: red;  cursor: pointer;}
+
+        #outer ul li {
+            margin: 2px;
+            /*border: 1px solid red;*/
+            list-style: none;
+        }
+        #outer ul li input {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var all = document.getElementById("all");
+            var text = document.getElementsByTagName("strong")[0];
+            var reverse = document.getElementById("reverse");
+            var checkboxes = document.getElementsByTagName("input");
+            //select all or clear
+            all.onclick = function () {
+                text.innerHTML = text.innerHTML == "clear" ? "all" : "clear";
+                if(all.checked) {
+                    for(var i=1;i<checkboxes.length;i++) {
+                        checkboxes[i].checked = true;
+                    }
+                } else {
+                    for(var i=1;i<checkboxes.length;i++) {
+                        checkboxes[i].checked = false;
+                    }
+                }
+            };
+
+            //update all
+            function updateAll() {
+                var allCheck = true;
+                for (var j = 1; j < checkboxes.length; j++) {
+                    if (!checkboxes[j].checked) {
+                        allCheck = false;
+                        break;
+                    }
+                }
+                if (allCheck) {
+                    all.checked = true;
+                    text.innerHTML = "clear";
+                } else {
+                    all.checked = false;
+                    text.innerHTML = "all"
+                }
+            }
+
+            for(var i=1;i<checkboxes.length;i++) {
+                checkboxes[i].onclick = function () {
+                    updateAll();
+                };
+            }
+
+            //reverse
+            reverse.onclick = function () {
+                for(var i =1; i<checkboxes.length; i++) {
+                    checkboxes[i].checked = checkboxes[i].checked ? false : true;
+                }
+                updateAll();
+
+            };
+        };
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <ul>
+            <li>
+                <label>
+                    <input id="all" type="checkbox"/><strong>all</strong>
+                </label>
+                <span id="reverse">reverse</span>
+            </li>
+            <li><hr/></li>
+            <li>
+                <label><input type="checkbox"/>option1</label>
+            </li>
+            <li>
+                <label><input type="checkbox"/>option2</label>
+            </li>
+            <li>
+                <label><input type="checkbox"/>option3</label>
+            </li>
+            <li>
+                <label><input type="checkbox"/>option4</label>
+            </li>
+            <li>
+                <label><input type="checkbox"/>option5</label>
+            </li>
+            <li>
+                <label><input type="checkbox"/>option6</label>
+            </li>
+            <li>
+                <label><input type="checkbox"/>option7</label>
+            </li>
+            <li>
+                <label><input type="checkbox"/>option8</label>
+            </li>
+            <li>
+                <label><input type="checkbox"/>option9</label>
+            </li>
+            <li><label><input type="checkbox"/>option10</label></li>
+        </ul>
+    </div>
+</body>
+</html>

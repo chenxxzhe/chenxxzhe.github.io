@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>exercise 25 -- calculator</title>
+    <style>
+        body * {
+            padding: 0;
+            margin: 0;
+            font: 16px/1.2 Arial;
+        }
+        #cal {
+            width: 35%;
+            margin: 10px auto;
+            color: white;
+            background: url("panel_bg.jpg");
+        }
+        #cal div {
+            position: relative;
+            background: url("show_bg.jpg");
+            text-align: right;
+
+        }
+        #formula {
+            display: block;
+            width: 100%;
+            background: none;
+            border: none;
+            text-align: right;
+            font: 0.7em/1.5 Arial ;
+        }
+        #show {
+            background: none;
+            border: none;
+            text-align: right;
+            font: 1.6em/1 Arial;
+            font-weight: bold;
+        }
+        #cal ul {
+            overflow: auto;
+        }
+
+        #cal ul li{
+            float: left;
+            width: 10%;
+            list-style: none;
+        }
+        #cal ul li:active {
+            background: url("panel_btn.png") no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div id="cal">
+        <p>calculator demo</p>
+        <div>
+            <input id="formula" type="text" readonly="readonly" value="test">
+            <input id="show" type="text" readonly="readonly" value="0" maxlength="9"/>
+        </div>
+        <ul id="panel">
+            <li>c</li>
+            <li>%</li>
+            <li>÷</li>
+            <li>×</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>-</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>+</li>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>=</li>
+            <li>0</li>
+            <li>.</li>
+        </ul>
+    </div>
+</body>
+</html>
