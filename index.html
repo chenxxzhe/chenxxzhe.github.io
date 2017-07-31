@@ -1,15 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="lorem">
+        <meta name="keywords" content="key,words">
 
----
-layout:default
-title:my blog
----
-
-<h2>{{page.title}}</h2>
-<p>the newest posts</p>
-<ul>
-    {% for post in site.posts %}
-    <li>{{post.date|date_to_string}}<a href="{{site.baseurl}}{{post.url}}">{{post.title}}</a></li>
-    {% endfor %}
-</ul>
-
-
+        <title>Chenzhe Homepage</title>
+    </head>
+    <body>
+        <h3>Projects</h3>
+        <ul>
+          <li><a href="https://chenxxzhe.github.io/extract-classname/">extract classname from HTML</a></li>
+          <li><a href="https://chenxxzhe.github.io/vue-flexbox-playground/dist/">Flexbox playground</a></li>
+        </ul>
+    </body>
+</html>
