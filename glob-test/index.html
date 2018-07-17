@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>glob test</title>
+  <style>
+    .loadint-text {
+      font-size: 2rem;
+    }
+    .dot {
+      position: relative;
+      display: inline-block;
+    }
+    .shade {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: #fff;
+      animation: loading 1s infinite;
+    }
+    @keyframes loading {
+      from {left: 0;}
+      to {left: 100%;}
+    }
+  </style>
+</head>
+<body>
+  <h1>test glob</h1>
+  
+  <div id="app">
+    <p class="loading-text">
+      Loading
+      <span class="dot">
+        ...
+        <span class="shade"></span>
+      </span>
+    </p>
+  </div>
+  <script type="text/x-template" id="main">
+    <div>
+      <p>
+        <label for="glob">glob: <input type="text" v-model="glob" placeholder="input glob" @input="testGlob"></label>
+      </p>
+      <p>
+        <label for="path">path: <input type="text" v-model="path" placeholder="input path" @input="testGlob"></label>
+      </p>
+      <p>
+        match: {{match}}
+      </p>
+    </div>
+  </script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script type="module">
+    import minimatch from 'https://dev.jspm.io/minimatch'
+    
+    new Vue({
+      el: '#app',
+      template: '#main',
+      data: {
+        glob: '',
+        path: '',
+        match: false,
+      },
+      methods: {
+        testGlob() {
+          try {
+            // file, glob
+            this.match = minimatch(this.path, this.glob)
+          } catch(e) {
+
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>
